@@ -10,18 +10,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     
     <style>
-        /* Base Styles */
+        /* Custom Properties (Variables) */
         :root {
-            --primary-color: #3f51b5; /* Indigo Blue - for accents and buttons */
-            --secondary-color: #ff9800; /* Orange - for highlights */
-            --text-color: #333;
-            --light-text-color: #f4f4f4;
-            --background-color: #ffffff;
-            --light-gray: #f9f9f9;
-            --dark-gray: #222;
+            /* Use Inter font as requested by the old HTML */
             --font-stack: 'Inter', sans-serif;
+            --primary-color: #007bff; /* Bright Blue for links/accents (modern Framer style) */
+            --secondary-color: #ffc107; /* Yellow/Orange for highlights */
+            --text-color: #212529; /* Dark text */
+            --light-text-color: #f8f9fa; /* Light text */
+            --background-color: #ffffff;
+            --section-bg: #f8f9fa; /* Light gray section background */
+            --dark-bg: #343a40; /* Darker header/footer */
         }
 
+        /* Global Reset & Base Styles */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -32,7 +34,7 @@
             font-family: var(--font-stack);
             line-height: 1.6;
             color: var(--text-color);
-            background-color: var(--light-gray);
+            background-color: var(--section-bg); /* Use the light gray background */
         }
 
         a {
@@ -48,10 +50,10 @@
         /* --- Header & Navigation --- */
 
         .main-header {
-            background-color: var(--dark-gray);
+            background-color: var(--dark-bg);
             color: var(--light-text-color);
             padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .header-container {
@@ -69,16 +71,16 @@
         }
 
         .logo {
-            height: 40px; /* Adjust size */
+            height: 40px;
             width: 40px;
             margin-right: 10px;
-            filter: invert(1); /* Makes the logo white/light */
+            filter: invert(1); /* Ensure the radio icon is light against the dark header */
         }
 
         .site-title {
-            font-size: 1.8em;
+            font-size: 2em;
             font-weight: 900;
-            letter-spacing: -0.5px;
+            letter-spacing: -1px; /* Tighter spacing for modern look */
             color: var(--light-text-color);
         }
 
@@ -89,20 +91,23 @@
 
         .nav-link {
             color: var(--light-text-color);
-            margin-left: 25px;
+            margin-left: 30px;
             font-weight: 500;
-            font-size: 1.05em;
-            padding: 5px 0;
+            font-size: 1.1em;
             position: relative;
+            padding: 5px 0;
+            opacity: 0.8;
         }
 
         .nav-link:hover {
             color: var(--secondary-color);
+            opacity: 1;
         }
 
         .staff-link {
             border-left: 1px solid rgba(255, 255, 255, 0.2);
-            padding-left: 25px;
+            padding-left: 30px;
+            margin-left: 30px;
         }
 
         /* Listen Live Button */
@@ -110,102 +115,104 @@
             background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 10px 20px;
-            margin-left: 30px;
-            border-radius: 5px;
+            padding: 10px 25px;
+            margin-left: 40px;
+            border-radius: 50px; /* Pill shape for a modern Framer touch */
             cursor: pointer;
             font-weight: 600;
             font-size: 1em;
             transition: background-color 0.3s ease, transform 0.1s;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            box-shadow: 0 4px 6px rgba(0, 123, 255, 0.3);
         }
 
         .listen-btn:hover {
-            background-color: #303f9f; /* Darker primary color */
-        }
-
-        .listen-btn:active {
-            transform: scale(0.98);
+            background-color: #0056b3; /* Darker blue */
         }
         
         /* Optional: Visually indicate when the button is actively streaming */
         .listen-btn.active {
-            background-color: #d32f2f; /* Red for 'Stop' */
+            background-color: #dc3545; /* Red for 'Stop' */
+            box-shadow: 0 4px 6px rgba(220, 53, 69, 0.3);
         }
         .listen-btn.active:hover {
-            background-color: #c62828;
+            background-color: #c82333;
         }
 
-        /* --- Main Content Layout --- */
+        /* --- Main Content & Layout --- */
 
         .main-content {
             max-width: 1200px;
-            margin: 30px auto;
+            margin: 40px auto;
             padding: 0 20px;
         }
 
-        /* --- Featured Article --- */
+        /* --- Featured Article (Hero) --- */
 
         .featured-article {
             display: flex;
             background-color: var(--background-color);
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
-            margin-bottom: 40px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Stronger shadow for depth */
         }
 
         .featured-image {
-            width: 50%;
-            height: 400px;
+            width: 60%; /* Make the image slightly bigger */
+            height: 450px;
             object-fit: cover;
         }
 
         .featured-content {
-            width: 50%;
-            padding: 40px;
+            width: 40%;
+            padding: 50px 40px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            background-color: var(--background-color);
         }
 
         .article-date {
             display: block;
-            color: var(--secondary-color);
-            font-weight: 500;
+            color: var(--primary-color);
+            font-weight: 600;
             margin-bottom: 10px;
             text-transform: uppercase;
-            font-size: 0.9em;
+            font-size: 0.85em;
+            letter-spacing: 1px;
         }
 
         .featured-title {
-            font-size: 2.5em;
+            font-size: 3em; /* Larger, bolder text */
             font-weight: 900;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             line-height: 1.1;
-            color: var(--dark-gray);
+            color: var(--text-color);
         }
 
         .featured-summary {
             font-size: 1.1em;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             color: #555;
         }
 
         .read-more-btn {
             align-self: flex-start;
-            padding: 10px 20px;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            border-radius: 5px;
-            font-weight: 600;
-            transition: background-color 0.3s, color 0.3s;
+            padding: 12px 25px;
+            border: none;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            border-radius: 50px;
+            font-weight: 700;
+            transition: opacity 0.3s, transform 0.1s;
+            text-transform: uppercase;
         }
 
         .read-more-btn:hover {
-            background-color: var(--primary-color);
-            color: white;
+            opacity: 0.9;
+            transform: translateY(-1px);
         }
 
         /* --- Latest Articles Section --- */
@@ -215,13 +222,10 @@
         }
 
         .section-title {
-            font-size: 2em;
+            font-size: 2.5em;
             font-weight: 700;
-            color: var(--dark-gray);
-            margin-bottom: 25px;
-            border-bottom: 3px solid var(--primary-color);
-            display: inline-block;
-            padding-bottom: 5px;
+            color: var(--text-color);
+            margin-bottom: 30px;
         }
 
         .articles-grid {
@@ -232,20 +236,20 @@
 
         .article-card {
             background-color: var(--background-color);
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .article-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
 
         .article-image {
             width: 100%;
-            height: 200px;
+            height: 220px;
             object-fit: cover;
         }
 
@@ -254,34 +258,35 @@
         }
 
         .article-title {
-            font-size: 1.3em;
+            font-size: 1.4em;
             font-weight: 700;
             margin: 10px 0;
-            min-height: 50px; /* Keep titles consistent */
+            min-height: 50px; 
+            color: var(--text-color);
         }
 
         .article-summary {
-            font-size: 0.9em;
-            color: #666;
+            font-size: 0.95em;
+            color: #6c757d;
             margin-bottom: 15px;
         }
 
         .article-link {
             font-weight: 600;
-            color: var(--secondary-color);
+            color: var(--primary-color);
         }
 
         .article-link:hover {
-            color: var(--primary-color);
+            color: var(--secondary-color);
         }
 
         /* --- Footer --- */
 
         .main-footer {
-            background-color: var(--dark-gray);
+            background-color: var(--dark-bg);
             color: var(--light-text-color);
-            padding: 30px 0;
-            margin-top: 40px;
+            padding: 40px 0;
+            margin-top: 50px;
         }
 
         .footer-container {
@@ -295,6 +300,7 @@
 
         .footer-copyright {
             font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.6);
         }
 
         .footer-nav {
@@ -302,7 +308,7 @@
         }
 
         .footer-link {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
             margin: 0 15px;
             font-size: 0.9em;
         }
@@ -313,11 +319,11 @@
 
         .footer-tagline {
             font-style: italic;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.8em;
         }
 
-        /* --- Media Queries for Responsiveness --- */
+        /* --- Media Queries (Responsiveness) --- */
         @media (max-width: 992px) {
             .featured-article {
                 flex-direction: column;
@@ -339,9 +345,6 @@
             .footer-nav {
                 margin: 15px 0;
             }
-            .footer-tagline {
-                margin-top: 10px;
-            }
         }
 
         @media (max-width: 600px) {
@@ -359,6 +362,7 @@
             .staff-link {
                 border: none;
                 padding-left: 10px;
+                margin-left: 10px;
             }
             .listen-btn {
                 margin-left: 10px;
@@ -368,7 +372,7 @@
                 grid-template-columns: 1fr;
             }
             .featured-title {
-                font-size: 2em;
+                font-size: 2.5em;
             }
         }
     </style>
@@ -456,47 +460,6 @@
 
     <audio id="radioPlayer" preload="none"></audio>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const listenBtn = document.getElementById('listenBtn');
-            const radioPlayer = document.getElementById('radioPlayer');
-            // **IMPORTANT: Replace the URL below with your actual radio stream URL**
-            const streamUrl = 'https://stream.live.vc.bbcmedia.co.uk/bbc_radio_one_fm/live/mp3/a/medium'; 
-            let isPlaying = false;
-
-            // Set the stream source
-            radioPlayer.src = streamUrl;
-
-            listenBtn.addEventListener('click', () => {
-                if (isPlaying) {
-                    // Stop the stream
-                    radioPlayer.pause();
-                    listenBtn.textContent = 'Listen Live';
-                    listenBtn.classList.remove('active');
-                    isPlaying = false;
-                } else {
-                    // Start the stream
-                    radioPlayer.load(); // Reloads the stream source for a fresh connection
-                    radioPlayer.play()
-                        .then(() => {
-                            listenBtn.textContent = 'Stop Streaming';
-                            listenBtn.classList.add('active');
-                            isPlaying = true;
-                        })
-                        .catch(error => {
-                            console.error("Error playing audio stream:", error);
-                            alert("Could not start the stream. Please ensure the stream URL is correct and your browser allows auto-play.");
-                        });
-                }
-            });
-
-            // Optional: Update button text if stream ends unexpectedly
-            radioPlayer.addEventListener('ended', () => {
-                listenBtn.textContent = 'Listen Live';
-                listenBtn.classList.remove('active');
-                isPlaying = false;
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
