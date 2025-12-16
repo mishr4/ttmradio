@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TTM Radio - Latest News & Live Streaming</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="https://static.vecteezy.com/system/resources/previews/009/741/424/original/radio-music-icon-symbol-on-transparent-background-free-png.png" 
+                     alt="TTM Radio" class="logo">
+                <h1 class="site-title">TTM Radio</h1>
+            </div>
+            <nav class="main-nav">
+                <a href="#" class="nav-link">News</a>
+                <a href="#" class="nav-link">Programs</a>
+                <a href="#" class="nav-link">Team</a>
+                <a href="login.html" class="nav-link staff-link">Staff Login</a>
+                <button id="listenBtn" class="listen-btn">Listen Live</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Featured Article -->
+        <article class="featured-article">
+            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80" 
+                 alt="Featured Article" class="featured-image">
+            <div class="featured-content">
+                <span class="article-date">June 18, 2024</span>
+                <h2 class="featured-title">Breaking News: New Show Launches on TTM Radio</h2>
+                <p class="featured-summary">TTM Radio is thrilled to announce a brand new show starting this weekend, featuring exclusive interviews and live music. Join us for an exciting journey into the world of entertainment.</p>
+                <a href="#" class="read-more-btn">Read More</a>
+            </div>
+        </article>
+
+        <!-- Latest Articles Section -->
+        <section class="articles-section">
+            <h2 class="section-title">Latest Articles</h2>
+            <div class="articles-grid">
+                <article class="article-card">
+                    <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80" 
+                         alt="Article" class="article-image">
+                    <div class="article-content">
+                        <span class="article-date">June 17, 2024</span>
+                        <h3 class="article-title">TTM Radio Staff Receives Industry Award</h3>
+                        <p class="article-summary">Congratulations to the TTM Radio crew for receiving the Best Regional Station Award at the 2024 Media Awards.</p>
+                        <a href="#" class="article-link">Read More</a>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" 
+                         alt="Article" class="article-image">
+                    <div class="article-content">
+                        <span class="article-date">June 15, 2024</span>
+                        <h3 class="article-title">Live Coverage: Local Event on Air</h3>
+                        <p class="article-summary">Join us for live coverage and exclusive interviews from the big local event happening downtown this Friday on TTM Radio.</p>
+                        <a href="#" class="article-link">Read More</a>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=600&q=80" 
+                         alt="Article" class="article-image">
+                    <div class="article-content">
+                        <span class="article-date">June 14, 2024</span>
+                        <h3 class="article-title">Weekend Music Special: Top Hits Countdown</h3>
+                        <p class="article-summary">This weekend, tune in for our special countdown of the top hits of the year, featuring exclusive commentary from our DJs.</p>
+                        <a href="#" class="article-link">Read More</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-copyright">TTM Radio &copy; 2024</div>
+            <nav class="footer-nav">
+                <a href="#" class="footer-link">About Us</a>
+                <a href="#" class="footer-link">Programs</a>
+                <a href="#" class="footer-link">Contact</a>
+            </nav>
+            <p class="footer-tagline">Stay tuned. Listen live, anytime, anywhere.</p>
+        </div>
+    </footer>
+
+    <!-- Hidden Audio Player -->
+    <audio id="radioPlayer" preload="none"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
