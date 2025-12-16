@@ -4,13 +4,376 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TTM Radio - Latest News & Live Streaming</title>
-    <link rel="stylesheet" href="styles.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-color: #3f51b5; /* Indigo Blue - for accents and buttons */
+            --secondary-color: #ff9800; /* Orange - for highlights */
+            --text-color: #333;
+            --light-text-color: #f4f4f4;
+            --background-color: #ffffff;
+            --light-gray: #f9f9f9;
+            --dark-gray: #222;
+            --font-stack: 'Inter', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-stack);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-gray);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* --- Header & Navigation --- */
+
+        .main-header {
+            background-color: var(--dark-gray);
+            color: var(--light-text-color);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            height: 40px; /* Adjust size */
+            width: 40px;
+            margin-right: 10px;
+            filter: invert(1); /* Makes the logo white/light */
+        }
+
+        .site-title {
+            font-size: 1.8em;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            color: var(--light-text-color);
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--light-text-color);
+            margin-left: 25px;
+            font-weight: 500;
+            font-size: 1.05em;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--secondary-color);
+        }
+
+        .staff-link {
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            padding-left: 25px;
+        }
+
+        /* Listen Live Button */
+        .listen-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-left: 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1em;
+            transition: background-color 0.3s ease, transform 0.1s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .listen-btn:hover {
+            background-color: #303f9f; /* Darker primary color */
+        }
+
+        .listen-btn:active {
+            transform: scale(0.98);
+        }
+        
+        /* Optional: Visually indicate when the button is actively streaming */
+        .listen-btn.active {
+            background-color: #d32f2f; /* Red for 'Stop' */
+        }
+        .listen-btn.active:hover {
+            background-color: #c62828;
+        }
+
+        /* --- Main Content Layout --- */
+
+        .main-content {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* --- Featured Article --- */
+
+        .featured-article {
+            display: flex;
+            background-color: var(--background-color);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .featured-image {
+            width: 50%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .featured-content {
+            width: 50%;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .article-date {
+            display: block;
+            color: var(--secondary-color);
+            font-weight: 500;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+
+        .featured-title {
+            font-size: 2.5em;
+            font-weight: 900;
+            margin-bottom: 15px;
+            line-height: 1.1;
+            color: var(--dark-gray);
+        }
+
+        .featured-summary {
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            color: #555;
+        }
+
+        .read-more-btn {
+            align-self: flex-start;
+            padding: 10px 20px;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .read-more-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* --- Latest Articles Section --- */
+
+        .articles-section {
+            padding: 20px 0;
+        }
+
+        .section-title {
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 25px;
+            border-bottom: 3px solid var(--primary-color);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .article-card {
+            background-color: var(--background-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .article-content {
+            padding: 20px;
+        }
+
+        .article-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            margin: 10px 0;
+            min-height: 50px; /* Keep titles consistent */
+        }
+
+        .article-summary {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .article-link {
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .article-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- Footer --- */
+
+        .main-footer {
+            background-color: var(--dark-gray);
+            color: var(--light-text-color);
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.9em;
+        }
+
+        .footer-nav {
+            display: flex;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0 15px;
+            font-size: 0.9em;
+        }
+
+        .footer-link:hover {
+            color: var(--secondary-color);
+        }
+
+        .footer-tagline {
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9em;
+        }
+
+        /* --- Media Queries for Responsiveness --- */
+        @media (max-width: 992px) {
+            .featured-article {
+                flex-direction: column;
+            }
+            .featured-image, .featured-content {
+                width: 100%;
+                height: auto;
+            }
+            .featured-content {
+                padding: 30px;
+            }
+            .articles-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-nav {
+                margin: 15px 0;
+            }
+            .footer-tagline {
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header-container {
+                flex-direction: column;
+            }
+            .main-nav {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .nav-link {
+                margin: 5px 10px;
+            }
+            .staff-link {
+                border: none;
+                padding-left: 10px;
+            }
+            .listen-btn {
+                margin-left: 10px;
+                margin-top: 10px;
+            }
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+            .featured-title {
+                font-size: 2em;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="main-header">
         <div class="header-container">
             <div class="logo-section">
@@ -28,9 +391,7 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="main-content">
-        <!-- Featured Article -->
         <article class="featured-article">
             <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80" 
                  alt="Featured Article" class="featured-image">
@@ -42,7 +403,6 @@
             </div>
         </article>
 
-        <!-- Latest Articles Section -->
         <section class="articles-section">
             <h2 class="section-title">Latest Articles</h2>
             <div class="articles-grid">
@@ -82,7 +442,6 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-copyright">TTM Radio &copy; 2024</div>
@@ -95,9 +454,49 @@
         </div>
     </footer>
 
-    <!-- Hidden Audio Player -->
     <audio id="radioPlayer" preload="none"></audio>
 
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const listenBtn = document.getElementById('listenBtn');
+            const radioPlayer = document.getElementById('radioPlayer');
+            // **IMPORTANT: Replace the URL below with your actual radio stream URL**
+            const streamUrl = 'https://stream.live.vc.bbcmedia.co.uk/bbc_radio_one_fm/live/mp3/a/medium'; 
+            let isPlaying = false;
+
+            // Set the stream source
+            radioPlayer.src = streamUrl;
+
+            listenBtn.addEventListener('click', () => {
+                if (isPlaying) {
+                    // Stop the stream
+                    radioPlayer.pause();
+                    listenBtn.textContent = 'Listen Live';
+                    listenBtn.classList.remove('active');
+                    isPlaying = false;
+                } else {
+                    // Start the stream
+                    radioPlayer.load(); // Reloads the stream source for a fresh connection
+                    radioPlayer.play()
+                        .then(() => {
+                            listenBtn.textContent = 'Stop Streaming';
+                            listenBtn.classList.add('active');
+                            isPlaying = true;
+                        })
+                        .catch(error => {
+                            console.error("Error playing audio stream:", error);
+                            alert("Could not start the stream. Please ensure the stream URL is correct and your browser allows auto-play.");
+                        });
+                }
+            });
+
+            // Optional: Update button text if stream ends unexpectedly
+            radioPlayer.addEventListener('ended', () => {
+                listenBtn.textContent = 'Listen Live';
+                listenBtn.classList.remove('active');
+                isPlaying = false;
+            });
+        });
+    </script>
 </body>
 </html>
